@@ -1,0 +1,30 @@
+{
+  "name": "868-vision",
+  "version": "0.0.0",
+  "description": "CSC 868 Vision App",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jensvdh/868-vision.git"
+  },
+  "keywords": [
+    "CSC",
+    "SFSU",
+    "Vision",
+    "API",
+    "Google",
+    "APP"
+  ],
+  "author": "Jens Vanderhaeghe & Abhilash Shrivastava",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jensvdh/868-vision/issues"
+  },
+  "homepage": "https://github.com/jensvdh/868-vision#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}

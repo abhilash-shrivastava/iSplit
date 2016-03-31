@@ -4,7 +4,7 @@
   "description": "CSC 868 Vision App",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "./node_modules/forever/bin/forever -w index.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,13 @@
   },
   "homepage": "https://github.com/jensvdh/868-vision#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "google-vision-api-client": "0.0.3",
+    "multer": "^1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^2.5.3",
+    "eslint-config-google": "^0.4.0",
+    "forever": "^0.15.1"
   }
 }

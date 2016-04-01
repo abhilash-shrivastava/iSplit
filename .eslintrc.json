@@ -6,7 +6,8 @@
     },
     "globals": {
         "angular": true,
-        "_": true
+        "_": true,
+        "PrettyJSON": true
     },
     "extends": "google",
     "rules": {

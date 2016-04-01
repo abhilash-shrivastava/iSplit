@@ -20,19 +20,21 @@ var app = express();
 app.use(express.static('client'));
 
 app.post('/', upload.single('image'), function(req, res) {
-  //Build the request payloads
+  // Build the request payloads
   var d = requtil.createRequests().addRequest(
-	requtil.createRequest(req.file.path)
-		.withFeature('FACE_DETECTION', 3)
-		.withFeature('LABEL_DETECTION', 2)
-		.build());
-    console.log(d);
+  requtil.createRequest(req.file.path)
+    .withFeature('TEXT_DETECTION')
+    .build());
   // Do query to the api server
-  vision.query(d, function(e, r, d){
-	if(e) console.log('ERROR:', e);
-  console.log(JSON.stringify(d));
+  console.log('Hello');
+  vision.query(d, function(e, r, d) {
+    if (e) {
+      console.log(e);
+      res.sendStatus(500);
+    } else {
+      console.log(d);
+      res.send(JSON.stringify(d));
+    }
   });
-
-  res.send();
 });
 app.listen(3000);

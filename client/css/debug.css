@@ -29,7 +29,7 @@ section {
 }
 img {
   width:100%;
-  height:auto;
+  object-fit: scale-down;
 }
 header {
   display: flex;

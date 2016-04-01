@@ -31,6 +31,7 @@ function submitToServer(event) {
 }
 
 function printJSON(data) {
+  $('.text-container').empty();
   node = new PrettyJSON.view.Node({
     el: $('.text-container'),
     data: JSON.parse(data)

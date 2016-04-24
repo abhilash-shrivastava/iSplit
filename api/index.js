@@ -6,7 +6,7 @@ var jsonfile = './secret/apikey.json';
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, './tmp/');
+    cb(null, '../tmp/');
   },
   filename: function(req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now());
@@ -18,9 +18,6 @@ var upload = multer({storage: storage});
 // initialize the Google vision API.
 vision.init(jsonfile);
 var app = express();
-
-// in production, disable this, we will have nginx handle static files.
-app.use(express.static('client'));
 
 app.post('/', upload.single('image'), function(req, res) {
   // Build the request payloads
@@ -36,4 +33,5 @@ app.post('/', upload.single('image'), function(req, res) {
     }
   });
 });
+
 app.listen(3000);

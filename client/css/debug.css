@@ -17,7 +17,7 @@ body, div {
   justify-content: center;
 }
 section {
-  width: 50%;
+  width: 100%;
   position: absolute;
   height: 100%;
 }
@@ -40,17 +40,23 @@ header {
   z-index: 1;
 }
 button {
-  margin-top:25px;
-  width: 150px;
-  height: 50px;
-  margin-left: 50px;
+  align-items: center;
+  font-size: 50px;
+  text-align: -webkit-auto;
+  margin-top:325px;
+  width: 70%;
+  height: 100px;
+  margin-left: 15%;
+  color: #fff;
+  background: rgba(0,0,0,0);
+  border: solid 5px #fff;
 }
 input[type="file"] {
   display: none !important;
 }
 
 .image-container {
-  background-color: darkgray;
+  background-color: #11b671;
 }
 
 .text-container {
@@ -70,6 +76,18 @@ input[type="file"] {
   margin: 100px auto;
   -webkit-animation: sk-rotateplane 1.2s infinite ease-in-out;
   animation: sk-rotateplane 1.2s infinite ease-in-out;
+}
+
+.heading {
+  color: #fff;
+  height: 35px;
+  width: 100%;
+  position: absolute;
+  padding-top: 13px;
+  font-size: 30px;
+  background: #4aa178;
+  padding-bottom: 10px;
+  text-align: center;
 }
 
 @-webkit-keyframes sk-rotateplane {

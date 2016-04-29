@@ -4,7 +4,7 @@
   "description": "CSC 868 Vision App",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/forever/bin/forever -w index.js"
+    "api": "./node_modules/forever/bin/forever -w ./api/index.js"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
   "devDependencies": {
     "eslint": "^2.5.3",
     "eslint-config-google": "^0.4.0",
-    "forever": "^0.15.1"
+    "forever": "^0.15.1",
+    "webpack": "^1.13.0"
   }
 }

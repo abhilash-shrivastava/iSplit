@@ -2,7 +2,8 @@ var express = require('express');
 var multer  = require('multer');
 var vision = require('google-vision-api-client');
 var requtil = vision.requtil;
-var jsonfile = './secret/apikey.json';
+var path = require('path');
+var jsonfile = path.join(__dirname, 'secret/apikey.json');
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {

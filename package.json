@@ -4,7 +4,8 @@
   "description": "CSC 868 Vision App",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/forever/bin/forever -w index.js"
+    "start": "./node_modules/forever/bin/forever -w index.js",
+    "parse": "node parseTest.js"
   },
   "repository": {
     "type": "git",

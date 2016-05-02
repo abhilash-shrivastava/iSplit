@@ -3,12 +3,14 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var config = {
   entry: "./client/js/app.js",
+  devtool: 'source-map',
   output: {
     path: path.join(__dirname, './client/dist'),
     filename: "js/bundle-[hash].js"
   },
   devServer: {
-    port: 9000
+    port: 9000,
+    historyApiFallback: true
   },
   plugins: [
     new HtmlWebpackPlugin({

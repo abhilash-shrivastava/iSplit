@@ -2,7 +2,11 @@ var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var config = {
-  entry: "./client/js/app.js",
+  entry: [
+    './client/js/app.js',
+    'webpack-dev-server/client?http://localhost:9000', // WebpackDevServer host and port
+    'webpack/hot/only-dev-server'
+  ],
   devtool: 'source-map',
   output: {
     path: path.join(__dirname, './client/dist'),
@@ -24,10 +28,7 @@ var config = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel', // 'babel-loader' is also a legal name to reference
-        query: {
-          presets: ['es2015', 'react']
-        }
+        loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=react']
       }
     ]
   }

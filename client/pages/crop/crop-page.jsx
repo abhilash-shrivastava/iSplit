@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-export default class HomePage extends React.Component {
+export default class CropPage extends React.Component {
   render() {
     return <article>
-      Hello from Home
-      <Link to="/crop">Crop</Link>
+      Hello from crop
+      <Link to="/">Home</Link>
     </article>;
   }
 }

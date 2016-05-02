@@ -4,7 +4,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var config = {
   entry: [
     './client/root.jsx',
-    'webpack-dev-server/client?http://localhost:9000', // WebpackDevServer host and port
+    'webpack-dev-server/client?http://0.0.0.0:9000', // WebpackDevServer host and port
     'webpack/hot/only-dev-server'
   ],
   devtool: 'source-map',
@@ -29,6 +29,9 @@ var config = {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=react']
+      }, {
+        test: /\.css$/,
+        loader: "style-loader!css-loader"
       }
     ]
   }

@@ -1,0 +1,15 @@
+article.home {
+  background-color: #11B671;
+}
+article.home {
+  justify-content: center;
+}
+.home p {
+  font-size:40px;
+}
+.home h1 {
+  margin-top:25%;
+}
+.home h2 {
+  margin-top: 25px;
+}

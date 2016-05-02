@@ -1,0 +1,29 @@
+body.isplit {
+  color:white;
+  overflow: hidden;
+}
+article h1, h2 {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+article h1 {
+  font-size: 100px;
+}
+article h2 {
+  font-size: 60px;
+}
+
+.isplit article {
+  overflow: hidden;
+  height:100%;
+  width:calc(100% - 100px);
+  position:absolute;
+  padding-top:175px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+button {
+  cursor:pointer;
+}

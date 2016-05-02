@@ -3,7 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 var config = {
   entry: [
-    './client/js/app.js',
+    './client/root.jsx',
     'webpack-dev-server/client?http://localhost:9000', // WebpackDevServer host and port
     'webpack/hot/only-dev-server'
   ],

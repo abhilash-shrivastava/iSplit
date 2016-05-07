@@ -4,6 +4,14 @@
         "jquery": true,
         "node": true
     },
+    "plugins": [
+      "react"
+    ],
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
     "globals": {
         "angular": true,
         "_": true,
@@ -22,6 +30,7 @@
         "no-else-return": "off",
         "key-spacing": "off",
         "quote-props": "off",
-        "no-negated-condition": "off"
+        "no-negated-condition": "off",
+        "no-unused-vars": "off"
     }
 }

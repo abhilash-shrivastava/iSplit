@@ -1,6 +1,5 @@
 import React from 'react';
 import './home.css';
-import {Link} from 'react-router';
 import CameraButton from '../../components/camerabutton/camerabutton.jsx';
 
 export default class HomePage extends React.Component {

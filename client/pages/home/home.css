@@ -13,3 +13,23 @@ article.home {
 .home h2 {
   margin-top: 25px;
 }
+
+article.home form {
+  position: absolute;
+  bottom:20%;
+  width: 80%;
+  left: 10%;
+  border:10px solid white;
+}
+article.home form p {
+  width: 100%;
+  display: inline;
+  padding-top: 25px;
+  line-height: 100%;
+  vertical-align: middle;
+  text-align: center;
+  position: absolute;
+}
+.btn-camera {
+  height:100px;
+}

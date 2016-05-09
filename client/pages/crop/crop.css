@@ -1,3 +1,18 @@
-article.crop {
+.isplit article.crop {
   background-color: #11B671;
+  padding-top:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-crop{
+  position:fixed;
+  bottom:0;
+  left:0;
+  color:white;
+  font-size: 50px;
+  text-transform: uppercase;
+  background-color:#4AA178;
+  width:100%;
+  height:175px;
 }

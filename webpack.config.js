@@ -1,6 +1,6 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+console.log(__dirname);
 var config = {
   entry: [
     './client/root.jsx',

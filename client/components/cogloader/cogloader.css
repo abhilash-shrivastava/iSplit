@@ -1,7 +1,24 @@
 .cog {
   -webkit-animation: barrelRoll 4s infinite linear;
 }
+.loader-cog .images {
+   flex: 0 0 100%
+}
+.loader-cog {
+  position: absolute;
+  width:100%;
+  height:100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+
+  top:0;
+  left:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .cog-small {
+   flex: 0 0 100%;
   opacity: 0.7;
   width: 125px;
   top:-100px;

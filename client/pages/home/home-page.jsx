@@ -3,17 +3,26 @@ import './home.css';
 import FileInput from 'react-file-input';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
+import CogLoader from '../../components/cogloader/cogloader.jsx';
+
 export default class HomePage extends React.Component {
   handleChange(event) {
+    this.setState({
+      'isLoading': true
+    });
+    this.forceUpdate();
     var file = event.target.files[0];
     var dispatch = this.props.dispatch;
-    this.readFileFromInput(file, function(base64) {
-      dispatch({
-        type:'ADD_IMAGE',
-        payLoad: base64
+    var self = this;
+    setTimeout(function() {
+      self.readFileFromInput(file, function(base64) {
+        dispatch({
+          type:'ADD_IMAGE',
+          payLoad: base64
+        });
+        browserHistory.push('/crop');
       });
-      browserHistory.push('/crop');
-    });
+    }, 10);
   }
   readFileFromInput(file, onComplete) {
     var fr = new FileReader();
@@ -26,8 +35,16 @@ export default class HomePage extends React.Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
   }
-  render() {
-    return <article className="home">
+  componentWillMount() {
+    this.setState({
+      isLoading: false
+    });
+  }
+  renderLoader() {
+    return <CogLoader/>;
+  }
+  renderPage() {
+    return <div>
       <h1>iSplit</h1>
       <h2>Sharing is Caring</h2>
         <form>
@@ -38,6 +55,11 @@ export default class HomePage extends React.Component {
                     className="btn-camera"
                     onChange={this.handleChange}/>
         </form>
+    </div>;
+  }
+  render() {
+    return <article className="home">
+      {!this.state.isLoading ? this.renderPage() : this.renderLoader()}
     </article>;
   }
 }

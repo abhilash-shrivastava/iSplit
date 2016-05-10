@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import CogLoader from '../../components/cogloader/cogloader.jsx';
 
-export default class HomePage extends React.Component {
+class HomePage extends React.Component {
   handleChange(event) {
     this.setState({
       'isLoading': true

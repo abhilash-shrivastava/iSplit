@@ -1,0 +1,11 @@
+.bill-list {
+  font-size: 50px;
+}
+.list-item {
+  color:black;
+  background-color: white;
+  width:100%;
+}
+.list-item div {
+  display: inline-block;
+}

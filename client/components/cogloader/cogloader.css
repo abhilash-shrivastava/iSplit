@@ -18,7 +18,7 @@
   justify-content: center;
 }
 .cog-small {
-   flex: 0 0 100%;
+  flex: 0 0 100%;
   opacity: 0.7;
   width: 125px;
   top:-100px;

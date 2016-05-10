@@ -4,6 +4,7 @@
   "description": "CSC 868 Vision App",
   "main": "index.js",
   "scripts": {
+    "build": "webpack",
     "start": "webpack-dev-server --hot --inline --progress --colors --host=0.0.0.0",
     "api": "./node_modules/forever/bin/forever -w ./api/index.js"
   },
@@ -41,6 +42,7 @@
     "babel-loader": "^6.2.1",
     "babel-preset-es2015": "^6.3.13",
     "babel-preset-react": "^6.5.0",
+    "clean-webpack-plugin": "^0.1.9",
     "css-loader": "^0.23.1",
     "eslint": "^2.5.3",
     "eslint-config-google": "^0.4.0",

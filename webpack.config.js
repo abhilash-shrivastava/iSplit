@@ -1,5 +1,8 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CleanWebpackPlugin = require('clean-webpack-plugin');
+
 console.log(__dirname);
 var config = {
   entry: [
@@ -10,7 +13,7 @@ var config = {
   devtool: 'source-map',
   output: {
     path: path.join(__dirname, './client/dist'),
-    filename: "js/bundle-[hash].js"
+    filename: "js/bundle-[hash].min.js"
   },
   devServer: {
     port: 9000,
@@ -21,6 +24,12 @@ var config = {
       template: './client/index.html',
       inject: 'body',
       filename: 'index.html'
+    }),
+    new ExtractTextPlugin('./css/bundle-[hash].min.css'),
+    new CleanWebpackPlugin(['dist'], {
+      root: path.join(__dirname, './client'),
+      verbose: true,
+      dry: false
     })
   ],
   module: {
@@ -28,10 +37,10 @@ var config = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=react,plugins[]=transform-class-properties']
+        loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=react']
       }, {
         test: /\.css$/,
-        loader: "style-loader!css-loader"
+        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
       }
     ]
   }

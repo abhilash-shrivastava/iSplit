@@ -1,5 +1,7 @@
-article.bill {
+.isplit article.bill {
   background-color: #11B671;
   padding-left: 0;
   padding-right:0;
+  padding-top:150px;
+  width:100%;
 }

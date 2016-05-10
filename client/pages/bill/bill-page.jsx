@@ -15,10 +15,13 @@ export class BillPage extends React.Component {
           return <div className="list-item">
             <div className="list-item-quantity">{item.quantity}</div>
             <div className="list-item-name">{item.name}</div>
-            <div className="list-item-price">{item.price}</div>
+            <div className="list-item-price">${item.price}</div>
           </div>;
         })}
       </div>
+      <button className="btn-crop" onClick={this.onSubmit}>
+        Show Overview
+      </button>
     </article>;
   }
 }

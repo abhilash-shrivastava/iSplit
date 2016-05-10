@@ -25,7 +25,7 @@ var config = {
       inject: 'body',
       filename: 'index.html'
     }),
-    new ExtractTextPlugin('./css/bundle-[hash].min.css'),
+    // new ExtractTextPlugin('./css/bundle-[hash].min.css'),
     new CleanWebpackPlugin(['dist'], {
       root: path.join(__dirname, './client'),
       verbose: true,
@@ -40,7 +40,8 @@ var config = {
         loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=react']
       }, {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style-loader", "css-loader")
+        loader: "style-loader!css-loader"
+        // loader: ExtractTextPlugin.extract("style-loader", "css-loader")
       }
     ]
   }

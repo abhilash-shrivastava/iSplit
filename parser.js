@@ -1,7 +1,7 @@
 module.exports = {
   parse: function(data) {
     var rows = createRows(data.responses[0].textAnnotations);
-    console.log(rows);
+    //console.log(rows);
     rows = arrangeItems(rows);
     console.log(rows);
     function createRows(textAnnotations) {
@@ -16,6 +16,7 @@ module.exports = {
         }
         rows[position].push(annotation.description);
       }
+      //console.log(rows);
       // merge rows that are close to each other
       var keys = [];
       for (var p in rows) {
@@ -46,6 +47,7 @@ module.exports = {
           var array = rows[p];
           var temp = [];
           temp[2] = '';
+          temp[1] = 1;
           for (var t in array) {
             if (array.hasOwnProperty(t)) {
               var m = (/[\d]+(\.[\d]+)?/).exec(array[t]);

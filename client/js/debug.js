@@ -25,6 +25,7 @@ function submitToServer(event) {
     contentType: false,
     type: 'POST',
     success: function(response) {
+      console.log(response);
       printJSON(response);
     }
   });

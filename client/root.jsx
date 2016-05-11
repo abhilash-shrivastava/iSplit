@@ -12,11 +12,15 @@ import './root.css';
 import 'reset-css/reset.css';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import RootReducer from './reducers/root.js';
+import {connect} from 'react-redux';
 
-export default class Root extends React.Component {
-  constructor() {
+class Root extends React.Component {
+  constructor(props) {
     super();
     this.store = createStore(RootReducer);
+  }
+  componentWillMount() {
+    var dispatch = this.props.dispatch;
   }
   render() {
     return <Provider store={this.store}>
@@ -34,3 +38,5 @@ export default class Root extends React.Component {
   }
 }
 ReactDOM.render(<Root/>, document.querySelectorAll('main')[0]);
+const exports = connect()(Root);
+export default exports;

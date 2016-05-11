@@ -5,7 +5,6 @@ import cropStyles from './reactcrop.css';
 import {connect} from 'react-redux';
 import CogLoader from '../../components/cogloader/cogloader.jsx';
 import {browserHistory} from 'react-router';
-
 import ReactCrop from 'react-image-crop';
 import 'react-fastclick';
 
@@ -19,7 +18,12 @@ export default class CropPage extends React.Component {
   }
   onSubmit() {
     this.setState({'isLoading': true});
+    var dispatch = this.props.dispatch;
     setTimeout(function() {
+      dispatch({
+        'type': 'UPDATE_ROUTE',
+        'payLoad': '/bill'
+      });
       browserHistory.push('/bill');
     }, 5000);
   }

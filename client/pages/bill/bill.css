@@ -5,3 +5,8 @@
   padding-top:150px;
   width:100%;
 }
+.bill-list {
+  font-size: 55px;
+  height:calc(100% - 320px);
+  overflow-y: scroll;
+}

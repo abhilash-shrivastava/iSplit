@@ -1,0 +1,29 @@
+.bill-list {
+  font-size: 55px;
+  height:calc(100% - 320px);
+  overflow-y: scroll;
+}
+.list-item {
+  color:black;
+  background-color: white;
+  width:100%;
+  padding-top:25px;
+  padding-bottom:25px;
+}
+.list-item div {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  display: inline-block;
+}
+.list-item-name {
+  width:65%;
+}
+.list-item-price {
+  width: calc(15% - 50px);
+  padding-right:25px;
+  padding-left: 25px;
+}
+.list-item-quantity  {
+  padding-left: 25px;
+  width: calc(10% - 25px);
+}

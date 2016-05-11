@@ -1,0 +1,43 @@
+.cog {
+  -webkit-animation: barrelRoll 4s infinite linear;
+}
+.loader-cog .images {
+   flex: 0 0 100%
+}
+.loader-cog {
+  position: absolute;
+  width:100%;
+  height:100%;
+  max-width: 100%;
+  flex-wrap: wrap;
+
+  top:0;
+  left:0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cog-small {
+  flex: 0 0 100%;
+  opacity: 0.7;
+  width: 125px;
+  top:-100px;
+  right:25px;
+  position: relative;
+  -webkit-animation: invertBarrelRoll 2s infinite linear;
+
+}
+.isplit .loader-cog p {
+  margin-top:50px;
+  text-transform: uppercase;
+  font-size: 50px;
+}
+@-webkit-keyframes barrelRoll {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@-webkit-keyframes invertBarrelRoll {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(-360deg); }
+}

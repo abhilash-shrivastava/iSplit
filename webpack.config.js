@@ -9,7 +9,7 @@ var config = {
     'webpack-dev-server/client?http://0.0.0.0:9000', // WebpackDevServer host and port
     'webpack/hot/only-dev-server'
   ],
-  devtool: 'eval-source-map',
+  devtool: "eval-source-map",
   output: {
     pathinfo: true,
     path: path.join(__dirname, './client/dist'),

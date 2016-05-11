@@ -11,3 +11,13 @@
 .isplit header h1 {
   font-size:50px;
 }
+.add-person-icon{
+  position: absolute;
+  right:60px;
+  width:75px;
+  height:75px;
+  top:calc(50% - 37px);
+  background-image:url(http://i.imgur.com/0TwCGbY.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}

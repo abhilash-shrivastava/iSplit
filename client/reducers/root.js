@@ -1,7 +1,11 @@
 import {combineReducers} from 'redux';
+import {browserHistory} from 'react-router';
 
 const defaultState = {
   'image':'',
+  'personCreaterVisible': false,
+  'people':[],
+  'path': window.location.pathname,
   'bill': [{
     "name": "vestibulum sit amet cursus",
     "quantity": 6,
@@ -56,6 +60,21 @@ const defaultState = {
 function root(state = defaultState, action) {
   let newState = Object.assign({}, state);
   switch (action.type) {
+    case 'ADD_PERSON': {
+      newState.people.push(action.payLoad);
+      newState.personCreaterVisible = false;
+      console.log(newState);
+      break;
+    }
+    case 'UPDATE_ROUTE': {
+      newState.path = action.payLoad;
+      newState.personCreaterVisible = false;
+      break;
+    }
+    case 'CHANGE_PERSON_CREATER_VISIBLITY': {
+      newState.personCreaterVisible = action.payLoad;
+      break;
+    }
     case 'ADD_IMAGE': {
       newState.image = action.payLoad;
       break;

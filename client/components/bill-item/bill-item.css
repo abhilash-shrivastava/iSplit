@@ -1,8 +1,3 @@
-.bill-list {
-  font-size: 55px;
-  height:calc(100% - 320px);
-  overflow-y: scroll;
-}
 .list-item {
   color:black;
   background-color: white;

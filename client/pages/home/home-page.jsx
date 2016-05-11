@@ -20,6 +20,10 @@ class HomePage extends React.Component {
           type:'ADD_IMAGE',
           payLoad: base64
         });
+        dispatch({
+          'type': 'UPDATE_ROUTE',
+          'payLoad': '/crop'
+        });
         browserHistory.push('/crop');
       });
     }, 10);

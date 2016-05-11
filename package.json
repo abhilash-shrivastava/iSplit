@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack",
-    "start": "webpack-dev-server --hot --inline --progress --colors --host=0.0.0.0",
+    "start": "webpack-dev-server --hot --inline --progress --colors --host=0.0.0.0 --compress",
     "api": "./node_modules/forever/bin/forever -w ./api/index.js"
   },
   "repository": {

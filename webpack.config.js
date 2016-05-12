@@ -37,7 +37,7 @@ var config = {
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=react']
+        loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=react,plugins[]=transform-class-properties']
       }, {
         test: /\.css$/,
         loader: "style-loader!css-loader"

@@ -9,18 +9,13 @@ import ReactCrop from 'react-image-crop';
 import 'react-fastclick';
 
 export default class CropPage extends React.Component {
-  constructor(props) {
-    super(props);
-    this.onSubmit = this.onSubmit.bind(this);
-  }
   componentWillMount() {
     this.setState({'isLoading': false});
   }
-  onSubmit() {
+  onSubmit = () => {
     this.setState({'isLoading': true});
-    var dispatch = this.props.dispatch;
-    setTimeout(function() {
-      dispatch({
+    setTimeout(() => {
+      this.props.dispatch({
         'type': 'UPDATE_ROUTE',
         'payLoad': '/bill'
       });

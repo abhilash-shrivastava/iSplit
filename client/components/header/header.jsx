@@ -2,20 +2,15 @@ import React from 'react';
 import './header.css';
 import {connect} from 'react-redux';
 class Header extends React.Component {
-  constructor(props) {
-    super(props);
-    this.showPersonCreator = this.showPersonCreator.bind(this);
-  }
   componentWillMount() {
-    var dispatch = this.props.dispatch;
-    window.addEventListener('popstate', function() {
-      dispatch({
+    window.addEventListener('popstate', () => {
+      this.props.dispatch({
         'type': 'UPDATE_ROUTE',
         'payLoad': window.location.pathname
       });
     });
   }
-  showPersonCreator() {
+  showPersonCreator = () => {
     this.props.dispatch({
       'type': 'CHANGE_PERSON_CREATER_VISIBLITY',
       'payLoad': true

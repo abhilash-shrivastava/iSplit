@@ -6,16 +6,15 @@ import {browserHistory} from 'react-router';
 import CogLoader from '../../components/cogloader/cogloader.jsx';
 
 class HomePage extends React.Component {
-  handleChange(event) {
+  handleChange = event => {
     this.setState({
       'isLoading': true
     });
     this.forceUpdate();
     var file = event.target.files[0];
     var dispatch = this.props.dispatch;
-    var self = this;
-    setTimeout(function() {
-      self.readFileFromInput(file, function(base64) {
+    setTimeout(() => {
+      this.readFileFromInput(file, base64 =>  {
         dispatch({
           type:'ADD_IMAGE',
           payLoad: base64
@@ -34,10 +33,6 @@ class HomePage extends React.Component {
       onComplete(fr.result);
     };
     fr.readAsDataURL(file);
-  }
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
   }
   componentWillMount() {
     this.setState({

@@ -17,7 +17,7 @@ import {connect} from 'react-redux';
 class Root extends React.Component {
   constructor(props) {
     super();
-    this.store = createStore(RootReducer);
+    this.store = createStore(RootReducer, {}, window.devToolsExtension ? window.devToolsExtension() : undefined);
   }
   componentWillMount() {
     var dispatch = this.props.dispatch;

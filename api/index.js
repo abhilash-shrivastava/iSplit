@@ -37,7 +37,7 @@ app.post('/', upload.single('image'), function(req, res) {
 });
 
 app.post('/mail', function(req, res) {
-  var response = mailer.sendMail();
+  var response = mailer.sendMail('crlang44@gmail.com', '1000000', 'Thomas Tse');
   res.send(response);
 });
 

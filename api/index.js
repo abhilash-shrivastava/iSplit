@@ -39,7 +39,6 @@ app.post('/', upload.single('image'), function(req, res) {
 });
 
 app.post('/mail', function (req, res) {
-  console.log('Yay!');
   var response = mailer.sendMail();
   res.send(response);
 });

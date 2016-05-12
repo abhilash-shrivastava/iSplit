@@ -4,6 +4,8 @@ module.exports = {
     //console.log(rows);
     rows = arrangeItems(rows);
     console.log(rows);
+    var items = getItems(rows);
+    console.log(items);
     function createRows(textAnnotations) {
       var rows = {};
       for (var i = 1; i < textAnnotations.length; i++) {
@@ -67,6 +69,41 @@ module.exports = {
         }
       }
       return arrangedRows;
+    }
+
+    function getItems(rows) {
+      var billObj = {};
+      var items = {};
+      for (var i in rows) {
+        if (rows.hasOwnProperty(i)) {
+          var m = (/[\d]+(\.[\d]+)?/).exec(rows[i][0]);
+          if (rows[i][2].match(/subtotal/i)){
+            billObj.subtotal = rows[i][0];
+            continue;
+          }
+          if (rows[i][2].match(/tax/i)){
+            billObj.tax = rows[i][0];
+            continue;
+          }
+          if (rows[i][2].match(/discount/i)){
+            billObj.discount = rows[i][0];
+            continue;
+          }
+          if (rows[i][2].match(/total/i)){
+            billObj.total = rows[i][0];
+            billObj.items = items;
+            return billObj;
+          }
+          if (m && !billObj.subtotal) {
+            // Check if there is a decimal place
+            if (m[1]) {
+              items[i] = rows[i];
+            }
+          }
+        }
+      }
+      billObj.items = items;
+      return billObj;
     }
   }
 };

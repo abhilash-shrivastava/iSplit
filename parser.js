@@ -3,7 +3,7 @@ module.exports = {
     var rows = createRows(data.responses[0].textAnnotations);
     //console.log(rows);
     rows = arrangeItems(rows);
-    console.log(rows);
+    //console.log(rows);
     var items = getItems(rows);
     console.log(items);
     function createRows(textAnnotations) {

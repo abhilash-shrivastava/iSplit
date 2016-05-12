@@ -27,15 +27,13 @@ function root(state = defaultState, action) {
       person.colorCode = newState.colors.pop();
       newState.people.push(person);
       newState.personCreaterVisible = false;
-      for (let person of newState.people) {
-        for (let item of newState.bill) {
-          var itemPerson = Object.assign({}, person);
-          itemPerson.quantity = 0;
-          if (!item.people) {
-            item.people = [];
-          }
-          item.people.push(itemPerson);
+      for (let item of newState.bill) {
+        var itemPerson = Object.assign({}, person);
+        itemPerson.quantity = 0;
+        if (!item.people) {
+          item.people = [];
         }
+        item.people.push(itemPerson);
       }
       break;
     }

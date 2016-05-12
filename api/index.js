@@ -4,6 +4,9 @@ var vision = require('google-vision-api-client');
 var requtil = vision.requtil;
 var path = require('path');
 var jsonfile = path.join(__dirname, 'secret/apikey.json');
+var pathToMailer = path.join(__dirname, 'mail.js');
+var mailer = require(pathToMailer);
+
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -34,5 +37,12 @@ app.post('/', upload.single('image'), function(req, res) {
     }
   });
 });
+
+app.post('/mail', function (req, res) {
+  console.log('Yay!');
+  var response = mailer.sendMail();
+  res.send(response);
+});
+
 
 app.listen(3000);

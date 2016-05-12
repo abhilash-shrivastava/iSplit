@@ -4,6 +4,7 @@ var vision = require('google-vision-api-client');
 var requtil = vision.requtil;
 var path = require('path');
 var jsonfile = path.join(__dirname, 'secret/apikey.json');
+var parser = require('./parser');
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -30,7 +31,9 @@ app.post('/', upload.single('image'), function(req, res) {
     if (e) {
       res.sendStatus(500);
     } else {
-      res.send(JSON.stringify(d));
+      var data = JSON.parse(JSON.stringify(d));
+      data = parser.parse(data);
+      res.send(JSON.stringify(data));
     }
   });
 });

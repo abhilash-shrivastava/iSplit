@@ -110,5 +110,6 @@ module.exports = {
       billObj.items = items;
       return billObj;
     }
+    return items;
   }
 };

@@ -74,7 +74,6 @@ module.exports = {
     function getItems(rows) {
       var billObj = {};
       var items = [];
-      var item = {};
       for (var i in rows) {
         if (rows.hasOwnProperty(i)) {
           var m = (/[\d]+(\.[\d]+)?/).exec(rows[i][0]);
@@ -95,13 +94,15 @@ module.exports = {
             billObj.items = items;
             return billObj;
           }
-          if (m && !billObj.subtotal) {
+          if (m && (!billObj.subtotal)) {
             // Check if there is a decimal place
             if (m[1]) {
+              var item = {};
               item.id = i;
               item.prize = rows[i][0];
               item.quantity = rows[i][1];
               item.description = rows[i][2];
+              console.log(item);
               items.push(item);
             }
           }

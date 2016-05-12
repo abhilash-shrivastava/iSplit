@@ -2,68 +2,70 @@ import {combineReducers} from 'redux';
 import {browserHistory} from 'react-router';
 
 const defaultState = {
-  'image':'',
+  'image': {},
+  'expandedItemKey': null,
+  'colors': [
+    '#e7edf3',
+    '#e3e0ef',
+    '#f2e6f2'
+  ],
   'personCreaterVisible': false,
   'people':[],
   'path': window.location.pathname,
-  'bill': [{
-    "name": "vestibulum sit amet cursus",
-    "quantity": 6,
-    "price": 18.46
-  }, {
-    "name": "proin",
-    "quantity": 3,
-    "price": 10.72
-  }, {
-    "name": "ut erat curabitur",
-    "quantity": 5,
-    "price": 12.53
-  }, {
-    "name": "a ipsum integer a nibh",
-    "quantity": 7,
-    "price": 21.04
-  }, {
-    "name": "erat quisque erat",
-    "quantity": 4,
-    "price": 21.91
-  }, {
-    "name": "id luctus",
-    "quantity": 1,
-    "price": 5.72
-  }, {
-    "name": "consectetuer adipiscing",
-    "quantity": 3,
-    "price": 15.31
-  }, {
-    "name": "morbi a",
-    "quantity": 6,
-    "price": 16.01
-  }, {
-    "name": "ut volutpat sapien arcu sed",
-    "quantity": 2,
-    "price": 1.03
-  }, {
-    "name": "vestibulum",
-    "quantity": 1,
-    "price": 5.06
-  }, {
-    "name": "sem mauris",
-    "quantity": 10,
-    "price": 24.21
-  }, {
-    "name": "mauris sit amet",
-    "quantity": 6,
-    "price": 10.46
-  }]
+  'bill': []
 };
 
 function root(state = defaultState, action) {
   let newState = Object.assign({}, state);
   switch (action.type) {
+    case 'EXPAND_ITEM': {
+      newState.expandedItemKey = action.payLoad;
+      break;
+    }
     case 'ADD_PERSON': {
-      newState.people.push(action.payLoad);
+      let person = action.payLoad;
+      person.colorCode = newState.colors.pop();
+      newState.people.push(person);
       newState.personCreaterVisible = false;
-      console.log(newState);
+      for (let person of newState.people) {
+        for (let item of newState.bill) {
+          var itemPerson = Object.assign({}, person);
+          itemPerson.quantity = 0;
+          if (!item.people) {
+            item.people = [];
+          }
+          item.people.push(itemPerson);
+        }
+      }
+      break;
+    }
+    case 'INCREASE_QUANTITY_ASSIGNED': {
+      for (let item of newState.bill)  {
+        console.log('test');
+        if (item.key === action.payLoad.key) {
+          for (let person of item.people) {
+            if (person.email === action.payLoad.email) {
+              person.quantity = person.quantity++;
+            }
+          }
+        }
+      }
+      break;
+    }
+    case 'DECREASE_QUANTITY_ASSIGNED': {
+      for (let item of newState.bill)  {
+        if (item.key === action.payLoad.key) {
+          for (let person of item.people) {
+            if (person.email === action.payLoad.email) {
+              person.quantity--;
+            }
+          }
+        }
+      }
+      break;
+    }
+    case 'SET_BILL': {
+      newState.bill = action.payLoad;
       break;
     }
     case 'UPDATE_ROUTE': {

@@ -13,18 +13,36 @@ export default class CropPage extends React.Component {
     this.setState({'isLoading': false});
   }
   onSubmit = () => {
-    this.setState({'isLoading': true});
-    setTimeout(() => {
+    this.setState({
+      'isLoading': true
+    });
+    this.transcribeBill(json => {
       this.props.dispatch({
         'type': 'UPDATE_ROUTE',
         'payLoad': '/bill'
       });
+      this.props.dispatch({
+        'type': 'SET_BILL',
+        'payLoad': json.items
+      });
       browserHistory.push('/bill');
-    }, 5000);
+    });
+  }
+  transcribeBill(callback) {
+    var form = new FormData();
+    form.append('image', this.props.image.file);
+    fetch('http://localhost:3000', {
+      method: 'POST',
+      body: form
+    }).then(function(response) {
+      response.json().then(json => {
+        callback(json);
+      });
+    });
   }
   renderCropper() {
     return <div>
-      <ReactCrop src={this.props.image} className="cropper"/>
+      <ReactCrop src={this.props.image.base64} className="cropper"/>
       <button className="btn-crop" onClick={this.onSubmit}>
         Confirm Crop
       </button>

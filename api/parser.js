@@ -1,9 +1,7 @@
 module.exports = {
   parse: function(data) {
     var rows = createRows(data.responses[0].textAnnotations);
-    //console.log(rows);
     rows = arrangeItems(rows);
-    //console.log(rows);
     var items = getItems(rows);
     console.log(items);
     function createRows(textAnnotations) {
@@ -18,7 +16,6 @@ module.exports = {
         }
         rows[position].push(annotation.description);
       }
-      //console.log(rows);
       // merge rows that are close to each other
       var keys = [];
       for (var p in rows) {
@@ -77,19 +74,19 @@ module.exports = {
       for (var i in rows) {
         if (rows.hasOwnProperty(i)) {
           var m = (/[\d]+(\.[\d]+)?/).exec(rows[i][0]);
-          if (rows[i][2].match(/subtotal/i)){
+          if (rows[i][2].match(/subtotal/i)) {
             billObj.subtotal = rows[i][0];
             continue;
           }
-          if (rows[i][2].match(/tax/i)){
+          if (rows[i][2].match(/tax/i)) {
             billObj.tax = rows[i][0];
             continue;
           }
-          if (rows[i][2].match(/discount/i)){
+          if (rows[i][2].match(/discount/i)) {
             billObj.discount = rows[i][0];
             continue;
           }
-          if (rows[i][2].match(/total/i)){
+          if (rows[i][2].match(/total/i)) {
             billObj.total = rows[i][0];
             billObj.items = items;
             return billObj;
@@ -98,11 +95,10 @@ module.exports = {
             // Check if there is a decimal place
             if (m[1]) {
               var item = {};
-              item.id = i;
-              item.prize = rows[i][0];
+              item.key = i;
+              item.price = rows[i][0];
               item.quantity = rows[i][1];
               item.description = rows[i][2];
-              console.log(item);
               items.push(item);
             }
           }

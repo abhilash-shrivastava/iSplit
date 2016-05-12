@@ -21,6 +21,13 @@ var upload = multer({storage: storage});
 vision.init(jsonfile);
 var app = express();
 
+app.use(function(req, res, next) {
+  res.setHeader('Content-Type', 'application/json');
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.post('/', upload.single('image'), function(req, res) {
   // Build the request payloads
   var d = requtil.createRequests().addRequest(

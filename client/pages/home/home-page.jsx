@@ -17,7 +17,10 @@ class HomePage extends React.Component {
       this.readFileFromInput(file, base64 =>  {
         dispatch({
           type:'ADD_IMAGE',
-          payLoad: base64
+          payLoad: {
+            'base64': base64,
+            'file': file
+          }
         });
         dispatch({
           'type': 'UPDATE_ROUTE',

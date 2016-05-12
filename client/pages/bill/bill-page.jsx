@@ -8,7 +8,7 @@ export class BillPage extends React.Component {
     return <article className="bill">
       <div className="bill-list">
         {this.props.bill.map(function(item, index) {
-          return <BillItem key={item.name} item={item}></BillItem>;
+          return <BillItem key={item.key} item={item}></BillItem>;
         })}
       </div>
       <button className="btn-crop" onClick={this.onSubmit}>

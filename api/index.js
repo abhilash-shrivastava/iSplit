@@ -4,21 +4,18 @@ var vision = require('google-vision-api-client');
 var requtil = vision.requtil;
 var path = require('path');
 var jsonfile = path.join(__dirname, 'secret/apikey.json');
-var mailer = require('./mailer');
-var parser = require('./parser');
+var mailer = require(path.join(__dirname, 'mailer.js'));
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, './tmp/');
+    cb(null, '../tmp/');
   },
   filename: function(req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now());
   }
 });
 
-var upload = multer({
-  storage: storage
-});
+var upload = multer({storage: storage});
 
 // initialize the Google vision API.
 vision.init(jsonfile);
@@ -34,15 +31,13 @@ app.post('/', upload.single('image'), function(req, res) {
     if (e) {
       res.sendStatus(500);
     } else {
-      var data = JSON.parse(JSON.stringify(d));
-      data = parser.parse(data);
-      res.send(JSON.stringify(data));
+      res.send(JSON.stringify(d));
     }
   });
 });
 
 app.post('/mail', function(req, res) {
-  var response = mailer.sendMail('jens.vanderhaeghe@gmail.com', '1000000', 'Thomas Tse');
+  var response = mailer.sendMail('crlang44@gmail.com', 50, 'Thomas');
   res.send(response);
 });
 

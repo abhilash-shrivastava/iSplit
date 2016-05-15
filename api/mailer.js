@@ -12,8 +12,11 @@ module.exports.sendMail = function(mailRecipient, amountdue, loanShark) {
   mg.sendText(sender, recipient, subject, body, function(err) {
     if (err) {
       ret = err;
+      console.log(err);
+    }else{
+      ret = 'Success';
+      console.log('Success');
     }
-    ret = 'SUCghfhgfCESS';
   });
   return ret;
 	// The function(err) is the callback. err is null when successful.

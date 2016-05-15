@@ -5,6 +5,7 @@ var requtil = vision.requtil;
 var path = require('path');
 var jsonfile = path.join(__dirname, 'secret/apikey.json');
 var mailer = require(path.join(__dirname, 'mailer.js'));
+var textbot = require(path.join(__dirname, 'text.js'));
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -38,6 +39,11 @@ app.post('/', upload.single('image'), function(req, res) {
 
 app.post('/mail', function(req, res) {
   var response = mailer.sendMail('technologyvp@gatorhack.com', 50, 'Thomas');
+  res.send(response);
+});
+
+app.post('/text', function(req, res) {
+  var response = textbot.sendText('4088288121', 50, 'Thomas');
   res.send(response);
 });
 

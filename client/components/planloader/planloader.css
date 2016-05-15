@@ -1,0 +1,94 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    *zoom: 1;
+    font-family: "Open Sans", "Helvetica", sans-serif;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #54B2D3;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+#paperPlane > svg {
+    width: 101px;
+    height: 109px;
+    max-width: 101px;
+    max-height: 109px;
+}
+
+#paperPlane {
+    width: 101px;
+    height: 109px;
+    position: absolute;
+    top: 50% !important;
+    left: 50% !important;
+    margin-top: -50px;
+    margin-left: -50px;
+}
+
+#paperPlane {
+    -webkit-animation: paper-plane-scoping 2s alternate infinite;
+    -moz-animation: paper-plane-scoping 2s alternate infinite;
+    animation: paper-plane-scoping 2s alternate infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+    animation-timing-function: linear;
+}
+
+#paperPlane > svg {
+    -webkit-animation-timing-function: ease-in-out;
+    -moz-animation-timing-function: ease-in-out;
+    animation-timing-function: ease-in-out;
+    -webkit-animation: paper-plane-soaring 4s forwards infinite;
+    -moz-animation: paper-plane-soaring 4s forwards infinite;
+    animation: paper-plane-soaring 4s forwards infinite;
+}
+
+@keyframes paper-plane-scoping {
+    0% {
+        -webkit-transform: translateY(-10px) scale(1);
+        -moz-transform: translateY(-10px) scale(1);
+        transform: translateY(-10px) scale(1);
+    }
+    100% {
+        -webkit-transform: translateY(5px) scale(1);
+        -moz-transform: translateY(5px) scale(1);
+        transform: translateY(5px) scale(1);
+    }
+}
+
+@keyframes paper-plane-soaring {
+    0% {
+        -webkit-transform: rotate(0deg) scale(1);
+        -moz-transform: rotate(0deg) scale(1);
+        transform: rotate(0deg) scale(1);
+    }
+    40% {
+        -webkit-transform: rotate(7deg) scale(1);
+        -moz-transform: rotate(7deg) scale(1);
+        transform: rotate(7deg) scale(1);
+    }
+    50% {
+        -webkit-transform: rotate(7deg) scale(1);
+        -moz-transform: rotate(7deg) scale(1);
+        transform: rotate(7deg) scale(1);
+    }
+    75% {
+        -webkit-transform: rotate(0deg) scale(1);
+        -moz-transform: rotate(0deg) scale(1);
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        -webkit-transform: rotate(0deg) scale(1);
+        -moz-transform: rotate(0deg) scale(1);
+        transform: rotate(0deg) scale(1);
+    }
+}

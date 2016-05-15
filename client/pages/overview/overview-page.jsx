@@ -4,10 +4,13 @@ import styles from './overview.css';
 import {browserHistory} from 'react-router';
 
 export default class OverviewPage extends React.Component {
+  componentWillMount() {
+    this.setState({'isLoading': false});
+  }
   goBack = () => {
     browserHistory.push('/bill');
   };
-  render() {
+  renderOverview() {
     return <article className="overview">
       <p className = "heading">Group Overview</p>
       <PieChart className="pie"
@@ -31,6 +34,15 @@ export default class OverviewPage extends React.Component {
       <div id="rectangle3"></div><div className = "text">Abhilash</div>
       <button className = "btn-back" onClick={this.goBack}></button>
       <button className = "btn-confirm"></button>
+    </article>;
+  }
+
+  renderLoader() {
+    return <CogLoader></CogLoader>;
+  }
+  render() {
+    return <article>
+      {this.state.isLoading ?  this.renderLoader() : this.renderOverview()}
     </article>;
   }
 }

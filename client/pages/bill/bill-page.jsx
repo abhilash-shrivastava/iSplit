@@ -3,7 +3,12 @@ import styles from './bill.css';
 import {connect} from 'react-redux';
 import PersonCreater from '../../components/person-creater/person-creater.jsx';
 import BillItem from '../../components/bill-item/bill-item.jsx';
+import {browserHistory} from 'react-router';
+
 export class BillPage extends React.Component {
+  onSubmit = () => {
+    browserHistory.push('/overview');
+  };
   render() {
     return <article className="bill">
       <div className="bill-list">

@@ -1,8 +1,12 @@
 import React from 'react';
 import PieChart from 'react-simple-pie-chart';
 import styles from './overview.css';
+import {browserHistory} from 'react-router';
 
 export default class OverviewPage extends React.Component {
+  goBack = () => {
+    browserHistory.push('/bill');
+  };
   render() {
     return <article className="overview">
       <p className = "heading">Group Overview</p>
@@ -25,7 +29,7 @@ export default class OverviewPage extends React.Component {
       <div id="rectangle1"></div><div className = "text">Jens</div>
       <div id="rectangle2"></div><div className = "text">Madhura</div>
       <div id="rectangle3"></div><div className = "text">Abhilash</div>
-      <button className = "btn-back"></button>
+      <button className = "btn-back" onClick={this.goBack}></button>
       <button className = "btn-confirm"></button>
     </article>;
   }

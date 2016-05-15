@@ -10,21 +10,21 @@
     padding: 0;
 }
 
-body {
-    background: #11B671;
-    height: 100vh;
-    width: 100%;
-    position: relative;
+.isplit div.paperPlane {
+    padding-top:0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#paperPlane > svg {
+.paperPlane > svg {
     width: 101px;
     height: 109px;
     max-width: 101px;
     max-height: 109px;
 }
 
-#paperPlane {
+.paperPlane {
     width: 101px;
     height: 109px;
     position: absolute;
@@ -34,7 +34,7 @@ body {
     margin-left: -50px;
 }
 
-#paperPlane {
+.paperPlane {
     -webkit-animation: paper-plane-scoping 2s alternate infinite;
     -moz-animation: paper-plane-scoping 2s alternate infinite;
     animation: paper-plane-scoping 2s alternate infinite;
@@ -43,7 +43,7 @@ body {
     animation-timing-function: linear;
 }
 
-#paperPlane > svg {
+.paperPlane > svg {
     -webkit-animation-timing-function: ease-in-out;
     -moz-animation-timing-function: ease-in-out;
     animation-timing-function: ease-in-out;

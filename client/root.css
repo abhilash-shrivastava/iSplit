@@ -20,9 +20,6 @@ article h2 {
   height:100%;
   width:100%;
   position:absolute;
-  padding-top:175px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 button {
   cursor:pointer;

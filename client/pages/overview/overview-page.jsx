@@ -41,6 +41,7 @@ export default class OverviewPage extends React.Component {
   renderLoader() {
     return <article className="overview-page">
         <PlaneLoader></PlaneLoader>
+        <p>Sending Notification</p>
       </article>;
   }
   render() {

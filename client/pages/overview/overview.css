@@ -67,3 +67,7 @@
     align-items: center;
     justify-content: center;
 }
+
+.isplit article.overview-page p {
+    font-size: 80px;
+    padding-top: 300px;}

@@ -11,7 +11,7 @@ export default class OverviewPage extends React.Component {
     browserHistory.push('/bill');
   };
   renderOverview() {
-    return <article className="overview">
+    return <div className="overview">
       <p className = "heading">Group Overview</p>
       <PieChart className="pie"
       slices={[
@@ -34,7 +34,7 @@ export default class OverviewPage extends React.Component {
       <div id="rectangle3"></div><div className = "text">Abhilash</div>
       <button className = "btn-back" onClick={this.goBack}></button>
       <button className = "btn-confirm"></button>
-    </article>;
+    </div>;
   }
 
   renderLoader() {

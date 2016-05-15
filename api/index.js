@@ -43,7 +43,7 @@ app.post('/mail', function(req, res) {
 });
 
 app.post('/text', function(req, res) {
-  var response = textbot.sendText('4088288121', 50, 'Thomas');
+  var response = textbot.sendText('4083683912', 50, 'Thomas');
   res.send(response);
 });
 

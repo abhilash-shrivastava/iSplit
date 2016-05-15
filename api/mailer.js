@@ -13,7 +13,7 @@ module.exports.sendMail = function(mailRecipient, amountdue, loanShark) {
     if (err) {
       ret = err;
       console.log(err);
-    }else{
+    } else {
       ret = 'Success';
       console.log('Success');
     }

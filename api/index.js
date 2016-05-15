@@ -37,7 +37,7 @@ app.post('/', upload.single('image'), function(req, res) {
 });
 
 app.post('/mail', function(req, res) {
-  var response = mailer.sendMail('crlang44@gmail.com', 50, 'Thomas');
+  var response = mailer.sendMail('technologyvp@gatorhack.com', 50, 'Thomas');
   res.send(response);
 });
 

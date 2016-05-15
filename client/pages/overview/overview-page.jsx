@@ -2,10 +2,11 @@ import React from 'react';
 import PieChart from 'react-simple-pie-chart';
 import styles from './overview.css';
 import {browserHistory} from 'react-router';
+import PlaneLoader from '../../components/planeloader/planeloader.jsx';
 
 export default class OverviewPage extends React.Component {
   componentWillMount() {
-    this.setState({'isLoading': false});
+    this.setState({'isLoading': true});
   }
   goBack = () => {
     browserHistory.push('/bill');
@@ -38,7 +39,7 @@ export default class OverviewPage extends React.Component {
   }
 
   renderLoader() {
-    return <CogLoader></CogLoader>;
+    return <PlaneLoader></PlaneLoader>;
   }
   render() {
     return <article>

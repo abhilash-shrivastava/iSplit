@@ -1,5 +1,5 @@
 import React from "react";
-import "./planloader.css";
+import "./planeloader.css";
 export default class PlanLoader extends React.Component {
   render() {
     return <div id="paperPlane">

@@ -3,7 +3,6 @@ module.exports = {
     var rows = createRows(data.responses[0].textAnnotations);
     rows = arrangeItems(rows);
     var items = getItems(rows);
-    console.log(items);
     function createRows(textAnnotations) {
       var rows = {};
       for (var i = 1; i < textAnnotations.length; i++) {
@@ -26,7 +25,7 @@ module.exports = {
       var j = 0;
       while (keys[j]) {
         var k = j + 1;
-        while ((keys[k] - keys[j]) < 5) {
+        while ((keys[k] - keys[j]) < 10) {
           var q = 0;
           while (rows[keys[k]][q]) {
             rows[keys[j]].push((rows[keys[k]][q]).toString());

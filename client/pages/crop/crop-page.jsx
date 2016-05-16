@@ -27,7 +27,7 @@ export default class CropPage extends React.Component {
       });
       browserHistory.push('/bill');
     });
-  }
+  };
   transcribeBill(callback) {
     var form = new FormData();
     form.append('image', this.props.image.file);

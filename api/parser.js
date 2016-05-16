@@ -22,10 +22,11 @@ module.exports = {
           keys.push(p);
         }
       }
+      var range = (keys[1] - keys[0]) / 2;
       var j = 0;
       while (keys[j]) {
         var k = j + 1;
-        while ((keys[k] - keys[j]) < 10) {
+        while ((keys[k] - keys[j]) < range) {
           var q = 0;
           while (rows[keys[k]][q]) {
             rows[keys[j]].push((rows[keys[k]][q]).toString());

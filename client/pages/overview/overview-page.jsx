@@ -6,13 +6,14 @@ import PlaneLoader from '../../components/planeloader/planeloader.jsx';
 
 export default class OverviewPage extends React.Component {
   componentWillMount() {
-    this.setState({'isLoading': true});
+    this.setState({'isLoading': false});
   }
   goBack = () => {
     browserHistory.push('/bill');
   };
   renderOverview() {
-    return <div className="overview">
+    return <article className="overview-article">
+      <div className="overview">
       <p className = "heading">Group Overview</p>
       <PieChart className="pie"
       slices={[
@@ -35,7 +36,8 @@ export default class OverviewPage extends React.Component {
       <div id="rectangle3"></div><div className = "text">Abhilash</div>
       <button className = "btn-back" onClick={this.goBack}></button>
       <button className = "btn-confirm"></button>
-    </div>;
+    </div>
+    </article>;
   }
 
   renderLoader() {

@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './details.css';
-import TableView from 'react-table-view';
 
 export default class DetailsPage extends React.Component {
   render() {

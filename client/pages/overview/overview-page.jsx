@@ -7,6 +7,21 @@ import PlaneLoader from '../../components/planeloader/planeloader.jsx';
 
 export default class OverviewPage extends React.Component {
   componentWillMount() {
+    let pKeys = Object.keys(this.props.people);
+    this.slices = [];
+    this.legendItems = [];
+    for (let pKey of pKeys) {
+      let person = this.props.people[pKey];
+      this.slices.push({
+        'color': person.colorCode,
+        'value': person.amountDue
+      });
+      this.legendItems.push({
+        'color': person.colorCode,
+        'value': person.amountDue,
+        'name': person.name
+      });
+    }
     this.setState({'isLoading': false});
   }
   goBack = () => {
@@ -16,45 +31,43 @@ export default class OverviewPage extends React.Component {
     this.setState({
       'isLoading': true
     });
-    this.props.dispatch({
-      'type': 'UPDATE_ROUTE',
-      'payLoad': '/details'
-    });
-    browserHistory.push('/details');
+    setTimeout(() => {
+      this.props.dispatch({
+        'type': 'UPDATE_ROUTE',
+        'payLoad': '/'
+      });
+      this.props.dispatch({
+        'type': 'RESET_STATE',
+        'payLoad': ''
+      });
+      browserHistory.push('/');
+    }, 5000);
   };
   renderOverview() {
-    return <article className="overview-article">
-      <div className="overview">
-      <p className = "heading">Group Overview</p>
-      <PieChart className="pie"
-      slices={[
-        {
-          color: '#6666ff',
-          value: 10
-        },
-        {
-          color: '#ff99ff',
-          value: 10
-        },
-        {
-          color: '#b3cce6',
-          value: 10
-        }
-      ]}
-    />
-      <div id="rectangle1"></div><div className = "text">Jens</div>
-      <div id="rectangle2"></div><div className = "text">Madhura</div>
-      <div id="rectangle3"></div><div className = "text">Abhilash</div>
-      <button className = "btn-back" onClick={this.goBack}></button>
-      <button className = "btn-confirm" onClick={this.confirm}></button>
-    </div>
+    return <article className="overview">
+      <h1>Group Overview</h1>
+        <PieChart
+        slices={this.slices}
+      />
+      <div className="legend">
+        {this.legendItems.map((item, index) => {
+          return <div className="legend-item">
+            <div className="legend-color" style={{'backgroundColor': item.color}}></div>
+            <p>{item.name + ' - $' + item.value.toFixed(2)}</p>
+          </div>;
+        })}
+      </div>
+      <div className="footer">
+        <button className="overview-button btn-back" onClick={this.goBack}></button>
+        <button className="overview-button btn-confirm" onClick={this.confirm}></button>
+      </div>
     </article>;
   }
 
   renderLoader() {
-    return <article className="overview-page">
+    return <article className="paper-loader-container">
         <PlaneLoader></PlaneLoader>
-        <p>Sending Notification</p>
+        <p>Sending Notifications</p>
       </article>;
   }
   render() {
@@ -63,8 +76,8 @@ export default class OverviewPage extends React.Component {
     </article>;
   }
 }
-
-const exports = connect(
+const exports = connect(state => ({
+  people: state.root.people
+})
 )(OverviewPage);
 export default exports;
-

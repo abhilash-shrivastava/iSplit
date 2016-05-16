@@ -5,67 +5,86 @@ const defaultState = {
   'image': {},
   'expandedItemKey': null,
   'colors': [
+    '#AA9D97',
+    '#DBF0FB',
+    '#F2CAF6',
     '#e7edf3',
     '#e3e0ef',
-    '#f2e6f2'
+    '#f2e6f2',
+    '#F3F3A5',
+    '#D8FAFD'
   ],
   'personCreaterVisible': false,
-  'people':[],
+  'me' : {},
+  'people': {
+    'jens@jens': {
+      'colorCode' : '#E1DDCB',
+      'email': 'jens@jens',
+      'name': 'Jens'
+    }
+  },
   'path': window.location.pathname,
-  'bill': []
+  'bill': {},
+  'billTotal' : 0
 };
 
 function root(state = defaultState, action) {
   let newState = Object.assign({}, state);
   switch (action.type) {
+    case 'RESET_STATE': {
+      newState = defaultState;
+      break;
+    }
     case 'EXPAND_ITEM': {
       newState.expandedItemKey = action.payLoad;
       break;
     }
+    case 'TOGGLE_PERSON': {
+      let item = newState.bill[action.payLoad.item.key];
+      let person = action.payLoad.person;
+      if (item.assignments[person.email]) {
+        if (Object.keys(item.assignments).length > 1) {
+          delete item.assignments[person.email];
+        }
+      } else {
+        item.assignments[person.email] = person;
+      }
+
+      let pKeys = Object.keys(newState.people);
+      var iKeys = Object.keys(newState.bill);
+      for (let pKey of pKeys) {
+        newState.people[pKey].amountDue = 0;
+      }
+      for (let iKey of iKeys) {
+        let item2 = newState.bill[iKey];
+        let aKeys = Object.keys(item2.assignments);
+        for (let aKey of aKeys) {
+          newState.people[aKey].amountDue += parseFloat(item2.price / aKeys.length);
+        }
+      }
+      break;
+    }
     case 'ADD_PERSON': {
       let person = action.payLoad;
+      person.amountDue = 0;
       person.colorCode = newState.colors.pop();
-      newState.people.push(person);
+      newState.people[person.email] = person;
       newState.personCreaterVisible = false;
-      for (let person of newState.people) {
-        for (let item of newState.bill) {
-          var itemPerson = Object.assign({}, person);
-          itemPerson.quantity = 0;
-          if (!item.people) {
-            item.people = [];
-          }
-          item.people.push(itemPerson);
-        }
-      }
-      break;
-    }
-    case 'INCREASE_QUANTITY_ASSIGNED': {
-      for (let item of newState.bill)  {
-        console.log('test');
-        if (item.key === action.payLoad.key) {
-          for (let person of item.people) {
-            if (person.email === action.payLoad.email) {
-              person.quantity = person.quantity++;
-            }
-          }
-        }
-      }
-      break;
-    }
-    case 'DECREASE_QUANTITY_ASSIGNED': {
-      for (let item of newState.bill)  {
-        if (item.key === action.payLoad.key) {
-          for (let person of item.people) {
-            if (person.email === action.payLoad.email) {
-              person.quantity--;
-            }
-          }
-        }
-      }
       break;
     }
     case 'SET_BILL': {
-      newState.bill = action.payLoad;
+      newState.bill = {};
+      let total = 0;
+      let myKey = Object.keys(newState.people)[0];
+      let me = newState.people[myKey];
+      for (let item of action.payLoad) {
+        item.assignments = {};
+        item.assignments[myKey] = newState.people[myKey];
+        newState.bill[item.key] = item;
+        total += parseFloat(item.price);
+      }
+      newState.billTotal = total;
+      me.amountDue = total;
       break;
     }
     case 'UPDATE_ROUTE': {

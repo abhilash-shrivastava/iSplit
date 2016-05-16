@@ -12,8 +12,8 @@ export class BillPage extends React.Component {
   render() {
     return <article className="bill">
       <div className="bill-list">
-        {this.props.bill.map(function(item, index) {
-          return <BillItem key={item.key} item={item}></BillItem>;
+        {Object.keys(this.props.bill || {}).map(key => {
+          return <BillItem key={key} item={this.props.bill[key]}></BillItem>;
         })}
       </div>
       <button className="btn-crop" onClick={this.onSubmit}>

@@ -1,0 +1,27 @@
+.isplit article.details {
+    padding-top:0;
+    display: flex;
+}
+
+.details div.info-div  {
+    background-color: #11B671;
+    height: 50%;
+    width: 100%;
+}
+
+.details p.heading {
+    padding-top: 200px;
+    font-size: 50px;
+    margin-left: 40%;
+}
+
+.details img {
+    border-radius: 50%;
+    margin-left: 35%;
+}
+
+.details p.name {
+    padding-top: 20px;
+    font-size: 50px;
+    margin-left: 35%;
+}

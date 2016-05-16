@@ -19,11 +19,8 @@ article h2 {
 .isplit article {
   overflow: hidden;
   height:100%;
-  width:calc(100% - 100px);
+  width:100%;
   position:absolute;
-  padding-top:175px;
-  padding-left: 50px;
-  padding-right: 50px;
 }
 button {
   cursor:pointer;

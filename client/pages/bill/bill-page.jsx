@@ -8,7 +8,7 @@ import {browserHistory} from 'react-router';
 export class BillPage extends React.Component {
   onSubmit = () => {
     browserHistory.push('/overview');
-  }
+  };
   render() {
     return <article className="bill">
       <div className="bill-list">

@@ -31,6 +31,10 @@ const defaultState = {
 function root(state = defaultState, action) {
   let newState = Object.assign({}, state);
   switch (action.type) {
+    case 'RESET_STATE': {
+      newState = defaultState;
+      break;
+    }
     case 'EXPAND_ITEM': {
       newState.expandedItemKey = action.payLoad;
       break;
@@ -47,17 +51,14 @@ function root(state = defaultState, action) {
       }
 
       let pKeys = Object.keys(newState.people);
-      console.log(pKeys);
       var iKeys = Object.keys(newState.bill);
       for (let pKey of pKeys) {
         newState.people[pKey].amountDue = 0;
       }
       for (let iKey of iKeys) {
         let item2 = newState.bill[iKey];
-        console.log(item2);
         let aKeys = Object.keys(item2.assignments);
         for (let aKey of aKeys) {
-          console.log(aKey);
           newState.people[aKey].amountDue += parseFloat(item2.price / aKeys.length);
         }
       }

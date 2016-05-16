@@ -31,11 +31,17 @@ export default class OverviewPage extends React.Component {
     this.setState({
       'isLoading': true
     });
-    this.props.dispatch({
-      'type': 'UPDATE_ROUTE',
-      'payLoad': '/details'
-    });
-    browserHistory.push('/details');
+    setTimeout(() => {
+      this.props.dispatch({
+        'type': 'UPDATE_ROUTE',
+        'payLoad': '/'
+      });
+      this.props.dispatch({
+        'type': 'RESET_STATE',
+        'payLoad': ''
+      });
+      browserHistory.push('/');
+    }, 5000);
   };
   renderOverview() {
     return <article className="overview">
@@ -59,9 +65,9 @@ export default class OverviewPage extends React.Component {
   }
 
   renderLoader() {
-    return <article className="overview-page">
+    return <article className="paper-loader-container">
         <PlaneLoader></PlaneLoader>
-        <p>Sending Notification</p>
+        <p>Sending Notifications</p>
       </article>;
   }
   render() {

@@ -1,13 +1,43 @@
 .list-item {
+  font-size: 45px;
   color:black;
   background-color: white;
-  width:100%;
-  padding-top:25px;
-  padding-bottom:25px;
+  width:100vw;
+  border-bottom:1px solid green;
 }
-.list-item div {
-  padding-top: 25px;
-  padding-bottom: 25px;
+.add-person-icon {
+  position: absolute;
+  right:60px;
+  width:75px;
+  height:75px;
+  top:calc(50% - 37px);
+  background-image:url(http://i.imgur.com/0TwCGbY.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.list-item.add-person {
+  text-align: center;
+  color:white;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  background-color: rgba(160, 207, 121, 0.8);
+}
+.add-person-icon{
+  position: relative;
+  top:15px;
+  padding:0 !important;
+  height:70px;
+  background-image:url(http://i.imgur.com/0TwCGbY.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+.list-item.add-person p {
+  position: relative;
+  top:-30px;
+}
+.list-item > div {
+  padding-top: 40px;
+  padding-bottom: 40px;
   display: inline-block;
 }
 .btn-minus {
@@ -37,18 +67,44 @@
   position: relative;
 }
 .list-item-dropdown .list-item-name {
-  margin-left: 30%;
-  width:35%;
+  width:65%;
 }
 .list-item-name {
+  padding-left:25px;
   width:65%;
 }
 .list-item-price {
   width: calc(15% - 50px);
   padding-right:25px;
   padding-left: 25px;
+  border-left: 1px solid green;
 }
 .list-item-quantity  {
-  padding-left: 25px;
-  width: calc(10% - 25px);
+  border-right: 1px solid green;
+  text-align: center;
+  width: calc(15% - 25px);
+}
+.checkbox {
+  color:rgba(0,0,0,0);
+  text-align: center;
+  position: relative;
+  width:calc(15% - 25px);
+  padding-top:25px;
+  border-right:1px solid green;
+}
+.active .checkbox {
+  background-image:url(http://i.imgur.com/fdI0Kr5.png);
+}
+.checkbox {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size:50%;
+}
+
+
+/* Media Queries */
+@media screen and (max-width: 50em) {
+	section {
+		font-size: 80%;
+	}
 }

@@ -10,16 +10,9 @@ class Header extends React.Component {
       });
     });
   }
-  showPersonCreator = () => {
-    this.props.dispatch({
-      'type': 'CHANGE_PERSON_CREATER_VISIBLITY',
-      'payLoad': true
-    });
-  }
   render() {
     return <header>
       <h1>iSplit</h1>
-      {this.props.path === '/bill' ? <div className="add-person-icon" onClick={this.showPersonCreator}></div> : null}
     </header>;
   }
 }

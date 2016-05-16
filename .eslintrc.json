@@ -32,6 +32,7 @@
         "no-else-return": "off",
         "key-spacing": "off",
         "quote-props": "off",
+        "guard-for-in": "off",
         "no-negated-condition": "off",
         "no-unused-vars": "off"
     }

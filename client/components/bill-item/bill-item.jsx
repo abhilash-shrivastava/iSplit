@@ -8,16 +8,6 @@ export default class BillItem extends React.Component {
       'payLoad': this.props.item.key
     });
   }
-  increase = (person) => {
-    person.quantity++;
-    this.props.dispatch({
-      'type': 'INCREASE_QUANTITY_ASSIGNED',
-      'payLoad': {
-        'key': this.props.item.key,
-        'email': person.email
-      }
-    });
-  }
   render() {
     return <div>
       <div className="list-item" onClick={this.slideDown}>
@@ -28,20 +18,63 @@ export default class BillItem extends React.Component {
       {this.props.item.key === this.props.expandedItemKey ? this.renderSlideDown() : null}
     </div>;
   }
-  renderSlideDown() {
-    if (this.props.item.people) {
-      return this.props.item.people.map((person, index) => {
-        return <div className="list-item list-item-dropdown" style={{'background-color' : person.colorCode}}>
-          <div className="list-item-quantity">{person.quantity}</div>
-          <div className="btn-minus"></div>
-          <div className="btn-plus"></div>
+  isPersonAssignedToMe(person) {
+    if (this.props.item.assignedPeople) {
+      return this.props.item.assignedPeople[person.email];
+    }
+    return false;
+  }
+  togglePerson = person => {
+    this.props.dispatch({
+      'type': 'TOGGLE_PERSON',
+      'payLoad': {
+        item: this.props.item,
+        person: person
+      }
+    });
+    this.forceUpdate();
+  }
+  getActiveClassForPerson = person => {
+    if (this.props.item.assignments && this.props.item.assignments[person.email]) {
+      return 'active';
+    }
+  }
+  calculatePrice = person => {
+    if (this.props.item.assignments && this.props.item.assignments[person.email]) {
+      let num = this.props.item.price / Object.keys(this.props.item.assignments || {}).length;
+      return (Math.round(num * 100) / 100).toFixed(2);
+    } else {
+      return '0.00';
+    }
+  }
+  renderPeople() {
+    if (this.props.people) {
+      return Object.keys(this.props.people).map(key => {
+        let person = this.props.people[key];
+        return <div className={'list-item list-item-dropdown ' + this.getActiveClassForPerson(person)} style={{'backgroundColor' : person.colorCode}} onClick={() => this.togglePerson(person)} >
+          <div className="checkbox">&nb</div>
           <div className="list-item-name">{person.name}</div>
-          <div className="list-item-price">${person.quantity === 0 ? 0 : this.props.item.price / person.quantity}</div>
+          <div className="list-item-price">${this.calculatePrice(person)}</div>
         </div>;
       });
     } else {
       return null;
     }
+  }
+  showPersonCreator = () => {
+    this.props.dispatch({
+      'type':'CHANGE_PERSON_CREATER_VISIBLITY',
+      'payLoad': true
+    });
+  };
+  renderSlideDown() {
+    return <span>
+      {this.renderPeople()}
+      <div className="list-item add-person" onClick={this.showPersonCreator}>
+        <div className="add-person-icon"></div>
+        <div>Add Person</div>
+      </div>
+    </span>;
   }
 }
 const exports = connect(state => ({

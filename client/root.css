@@ -1,6 +1,7 @@
 body.isplit {
   color:white;
   overflow: hidden;
+  font-family: sans-serif;
 }
 article h1, h2 {
   width: 100%;

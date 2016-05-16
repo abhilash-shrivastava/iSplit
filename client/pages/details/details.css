@@ -11,18 +11,19 @@
 
 .details p.heading {
     padding-top: 200px;
-    font-size: 50px;
+    font-size: 25px;
     margin-left: 40%;
 }
 
 .details img {
+    width: 30px;
     padding-top: 20px;
     border-radius: 50%;
-    margin-left: 35%;
+    margin-left: 50%;
 }
 
 .details p.name {
     padding-top: 20px;
-    font-size: 50px;
+    font-size: 25px;
     margin-left: 35%;
 }

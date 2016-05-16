@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import PieChart from 'react-simple-pie-chart';
 import styles from './overview.css';
 import {browserHistory} from 'react-router';
@@ -10,6 +11,16 @@ export default class OverviewPage extends React.Component {
   }
   goBack = () => {
     browserHistory.push('/bill');
+  };
+  confirm = () => {
+    this.setState({
+      'isLoading': true
+    });
+    this.props.dispatch({
+      'type': 'UPDATE_ROUTE',
+      'payLoad': '/details'
+    });
+    browserHistory.push('/details');
   };
   renderOverview() {
     return <article className="overview-article">
@@ -35,7 +46,7 @@ export default class OverviewPage extends React.Component {
       <div id="rectangle2"></div><div className = "text">Madhura</div>
       <div id="rectangle3"></div><div className = "text">Abhilash</div>
       <button className = "btn-back" onClick={this.goBack}></button>
-      <button className = "btn-confirm"></button>
+      <button className = "btn-confirm" onClick={this.confirm}></button>
     </div>
     </article>;
   }
@@ -52,3 +63,8 @@ export default class OverviewPage extends React.Component {
     </article>;
   }
 }
+
+const exports = connect(
+)(OverviewPage);
+export default exports;
+

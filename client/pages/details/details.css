@@ -16,6 +16,7 @@
 }
 
 .details img {
+    padding-top: 20px;
     border-radius: 50%;
     margin-left: 35%;
 }

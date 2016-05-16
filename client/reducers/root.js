@@ -20,7 +20,7 @@ const defaultState = {
     'jens@jens': {
       'colorCode' : '#E1DDCB',
       'email': 'jens@jens',
-      'name': 'Jens Vanderhaeghe'
+      'name': 'Jens'
     }
   },
   'path': window.location.pathname,

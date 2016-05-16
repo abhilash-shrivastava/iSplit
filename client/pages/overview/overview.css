@@ -7,6 +7,35 @@ article.overview h1 {
     padding-top: 225px;
     margin-bottom:75px;
 }
+.legend-color {
+  position: relative;
+  top:10px;
+  margin-right: 25px;
+  margin-left:100px;
+  display: inline-block;
+  width:60px;
+  height:40px;
+}
+.legend-item p {
+  font-weight: bold;
+  color:rgba(0,0,0,0.7);
+  display: inline-block;
+}
+.legend-item {
+  margin-top: 25px;
+  width: 50%;
+  text-align: left;
+  display: inline-block;
+}
+.legend {
+  margin-top:50px;
+  color:black;
+  font-size: 35px;
+}
+article.overview svg {
+  width:80%;
+  margin-left: 10%;
+}
 article.overview .footer {
   background-color: #e2dbd5;
   width:100%;

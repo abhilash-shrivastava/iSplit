@@ -3,3 +3,4 @@ tmp
 .idea
 dist
 *.log
+.DS_STORE

@@ -6,6 +6,12 @@ import Collapse, {Panel} from 'rc-collapse';
 import ReactDom from 'react-dom';
 
 export default class BillItem extends React.Component {
+  componentWillMount() {
+    this.props.dispatch({
+      'type': 'ADD_IMAGE',
+      'payLoad': ''
+    });
+  }
   slideDown = event => {
     event.persist();
     if (event.target.parentNode.className !== 'list-item') {

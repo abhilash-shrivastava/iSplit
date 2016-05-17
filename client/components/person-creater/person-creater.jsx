@@ -2,29 +2,21 @@ import React from 'react';
 import './person-creater.css';
 import {connect} from 'react-redux';
 class PersonCreater extends React.Component {
-  constructor(props) {
-    super(props);
-    this.hideFromBackdrop = this.hideFromBackdrop.bind(this);
-    this.hide = this.hide.bind(this);
-    this.updateName = this.updateName.bind(this);
-    this.updateEmail = this.updateEmail.bind(this);
-    this.submit = this.submit.bind(this);
-  }
   componentWillMount() {
     this.setState({
       'person': {
         'name': '',
-        'email': ''
+        'phone': ''
       }
     });
   }
-  hide() {
+  hide = () => {
     this.props.dispatch({
       'type': 'CHANGE_PERSON_CREATER_VISIBLITY',
       'payLoad': false
     });
   }
-  hideFromBackdrop(event) {
+  hideFromBackdrop = event => {
     if (event.nativeEvent.target.className === "person-creater") {
       this.props.dispatch({
         'type': 'CHANGE_PERSON_CREATER_VISIBLITY',
@@ -32,21 +24,21 @@ class PersonCreater extends React.Component {
       });
     }
   }
-  submit(event) {
+  submit = event => {
     event.preventDefault();
     this.props.dispatch({
       'type': 'ADD_PERSON',
       'payLoad': this.state.person
     });
   }
-  updateName(event) {
+  updateName = event => {
     var newState = Object.assign({}, this.state);
     newState.person.name = event.target.value;
     this.setState(newState);
   }
-  updateEmail(event) {
+  updatePhone = event => {
     var newState = Object.assign({}, this.state);
-    newState.person.email = event.target.value;
+    newState.person.phone = event.target.value;
     this.setState(newState);
   }
   render() {
@@ -55,7 +47,7 @@ class PersonCreater extends React.Component {
         <div className="btn-form-close" onClick={this.hide}></div>
         <p>Add Someone</p>
         <input required type="text" placeholder="Name" value={this.state.person.name}  onChange={this.updateName}></input>
-        <input required type="email" placeholder="Email" value={this.state.person.email}  onChange={this.updateEmail}></input>
+        <input required type="phone" placeholder="phone" value={this.state.person.phone}  onChange={this.updatePhone}></input>
         <button className="btn-crop">CONFIRM</button>
       </form>
     </div>;

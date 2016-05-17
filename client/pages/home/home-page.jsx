@@ -4,6 +4,8 @@ import FileInput from 'react-file-input';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import CogLoader from '../../components/cogloader/cogloader.jsx';
+import FacebookLogin from 'react-facebook-login';
+
 
 class HomePage extends React.Component {
   handleChange = event => {
@@ -57,6 +59,10 @@ class HomePage extends React.Component {
                     className="btn-camera"
                     onChange={this.handleChange}/>
         </form>
+      <FacebookLogin
+        appId="1704240733167659"
+        autoLoad={true}
+        callback={this.responseFacebook} />
     </div>;
   }
   render() {

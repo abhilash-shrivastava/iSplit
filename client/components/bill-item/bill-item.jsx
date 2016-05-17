@@ -16,7 +16,6 @@ export default class BillItem extends React.Component {
         'type': 'EXPAND_ITEM',
         'payLoad': this.props.item.key
       });
-      ReactDom.findDOMNode(this).scrollIntoView();
     } else {
       this.props.dispatch({
         'type': 'EXPAND_ITEM',
@@ -38,7 +37,7 @@ export default class BillItem extends React.Component {
   }
   isPersonAssignedToMe(person) {
     if (this.props.item.assignedPeople) {
-      return this.props.item.assignedPeople[person.email];
+      return this.props.item.assignedPeople[person.key];
     }
     return false;
   }
@@ -53,12 +52,12 @@ export default class BillItem extends React.Component {
     this.forceUpdate();
   }
   getActiveClassForPerson = person => {
-    if (this.props.item.assignments && this.props.item.assignments[person.email]) {
+    if (this.props.item.assignments && this.props.item.assignments[person.key]) {
       return 'active';
     }
   }
   calculatePrice = person => {
-    if (this.props.item.assignments && this.props.item.assignments[person.email]) {
+    if (this.props.item.assignments && this.props.item.assignments[person.key]) {
       let num = this.props.item.price / Object.keys(this.props.item.assignments || {}).length;
       return (Math.round(num * 100) / 100).toFixed(2);
     } else {

@@ -7,7 +7,6 @@ import OverviewPage from './pages/overview/overview-page.jsx';
 import TabPage from './pages/tab/tab-page.jsx';
 import BillPage  from './pages/bill/bill-page.jsx';
 import DetailsPage  from './pages/details/details-page.jsx';
-import FacebookPage  from './pages/facebook/facebook-login.jsx';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import './root.css';
@@ -35,7 +34,6 @@ class Root extends React.Component {
           <Route path="/overview" component={OverviewPage} />
           <Route path="/tab" component={TabPage} />
           <Route path="/details" component={DetailsPage} />
-          <Route path="/facebook" component={FacebookPage} />
         </Router>
       </div>
   </Provider>;

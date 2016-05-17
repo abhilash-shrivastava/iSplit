@@ -15,22 +15,24 @@ const defaultState = {
     '#D8FAFD'
   ],
   'personCreaterVisible': false,
-  'me' : {},
-  'people': {
-    'jens@jens': {
-      'colorCode' : '#E1DDCB',
-      'email': 'jens@jens',
-      'name': 'Jens'
-    }
-  },
   'path': window.location.pathname,
   'bill': {},
+  'people': {
+    'me': JSON.parse(localStorage.getItem('me')) || null
+  },
   'billTotal' : 0
 };
+function epicRandomString(b){for(var a=(Math.random()*eval("1e"+~~(50*Math.random()+50))).toString(36).split(""),c=3;c<a.length;c++)c==~~(Math.random()*c)+1&&a[c].match(/[a-z]/)&&(a[c]=a[c].toUpperCase());a=a.join("");a=a.substr(~~(Math.random()*~~(a.length/3)),~~(Math.random()*(a.length-~~(a.length/3*2)+1))+~~(a.length/3*2));if(24>b)return b?a.substr(a,b):a;a=a.substr(a,b);if(a.length==b)return a;for(;a.length<b;)a+=epicRandomString();return a.substr(0,b)};
 
 function root(state = defaultState, action) {
   let newState = Object.assign({}, state);
   switch (action.type) {
+    case 'ADD_ME': {
+      let me = action.payLoad;
+      localStorage.setItem('me', JSON.stringify(action.payLoad));
+      newState.people.me = me;
+      break;
+    }
     case 'RESET_STATE': {
       newState = defaultState;
       break;
@@ -42,12 +44,12 @@ function root(state = defaultState, action) {
     case 'TOGGLE_PERSON': {
       let item = newState.bill[action.payLoad.item.key];
       let person = action.payLoad.person;
-      if (item.assignments[person.email]) {
+      if (item.assignments[person.key]) {
         if (Object.keys(item.assignments).length > 1) {
-          delete item.assignments[person.email];
+          delete item.assignments[person.key];
         }
       } else {
-        item.assignments[person.email] = person;
+        item.assignments[person.key] = person;
       }
 
       let pKeys = Object.keys(newState.people);
@@ -68,18 +70,19 @@ function root(state = defaultState, action) {
       let person = action.payLoad;
       person.amountDue = 0;
       person.colorCode = newState.colors.pop();
-      newState.people[person.email] = person;
+      person.key = epicRandomString();
+      console.log(person.key);
+      newState.people[person.key] = person;
       newState.personCreaterVisible = false;
       break;
     }
     case 'SET_BILL': {
       newState.bill = {};
       let total = 0;
-      let myKey = Object.keys(newState.people)[0];
-      let me = newState.people[myKey];
+      let me = newState.people.me;
       for (let item of action.payLoad) {
         item.assignments = {};
-        item.assignments[myKey] = newState.people[myKey];
+        item.assignments.me = newState.people.me;
         newState.bill[item.key] = item;
         total += parseFloat(item.price);
       }

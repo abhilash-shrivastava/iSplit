@@ -37,7 +37,7 @@ app.post('/', upload.single('image'), function(req, res) {
 });
 
 app.post('/save', function(req, res) {
-  var response = textbot.sendText('2485679221');
+  var response = textbot.sendText('2485679221', '$50', 'Steve');
   res.send(response);
 });
 

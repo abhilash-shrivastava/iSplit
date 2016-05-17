@@ -22,7 +22,15 @@ const defaultState = {
   },
   'billTotal' : 0
 };
-function epicRandomString(b){for(var a=(Math.random()*eval("1e"+~~(50*Math.random()+50))).toString(36).split(""),c=3;c<a.length;c++)c==~~(Math.random()*c)+1&&a[c].match(/[a-z]/)&&(a[c]=a[c].toUpperCase());a=a.join("");a=a.substr(~~(Math.random()*~~(a.length/3)),~~(Math.random()*(a.length-~~(a.length/3*2)+1))+~~(a.length/3*2));if(24>b)return b?a.substr(a,b):a;a=a.substr(a,b);if(a.length==b)return a;for(;a.length<b;)a+=epicRandomString();return a.substr(0,b)};
+
+function makeid() {
+  var text = '';
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (var i = 0; i < 5; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }
+  return text;
+}
 
 function root(state = defaultState, action) {
   let newState = Object.assign({}, state);
@@ -71,8 +79,7 @@ function root(state = defaultState, action) {
       let person = action.payLoad;
       person.amountDue = 0;
       person.colorCode = newState.colors.pop();
-      person.key = epicRandomString();
-      console.log(person.key);
+      person.key = makeid();
       newState.people[person.key] = person;
       newState.personCreaterVisible = false;
       break;

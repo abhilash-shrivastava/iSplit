@@ -13,6 +13,15 @@ article.home {
 .home h2 {
   margin-top: 25px;
 }
+.isplit-logo {
+  margin: auto;
+  display: inline;
+  text-align: center;
+  width: 30vw;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-left: 35vw;
+}
 
 article.home form {
   position: absolute;

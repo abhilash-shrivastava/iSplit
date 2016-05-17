@@ -32,7 +32,7 @@ export default class BillItem extends React.Component {
   render() {
     return <div onClick={this.slideDown}><Collapse activeKey={this.props.item.key === this.props.expandedItemKey ? '1' : null}>
         <Panel header={<div className="list-item">
-              <div className="list-item-quantity">{this.props.item.quantity}</div>
+              <div className="list-item-quantity">{ this.props.item.quantity || ' % '}</div>
               <div className="list-item-name">{this.props.item.description}</div>
               <div className="list-item-price">${this.props.item.price}</div>
             </div>} key="1">

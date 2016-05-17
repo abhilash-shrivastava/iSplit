@@ -79,11 +79,12 @@ class HomePage extends React.Component {
                 placeholder="Upload Bill"
                 className="btn-camera"
                 onChange={this.handleChange}/>
-            </form>;
+    </form>;
   }
   renderPage() {
     return <div>
       <h1>iSplit</h1>
+      <img className="isplit-logo" src="http://i.imgur.com/ypJaq0i.png"/>
       <h2>Sharing is Caring</h2>
       {this.props.me ? this.renderCameraButton() : this.renderFacebookButton()}
     </div>;

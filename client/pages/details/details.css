@@ -1,6 +1,6 @@
 .isplit article.details {
     padding-top:0;
-    display: flex;
+
 }
 
 .details div.info-div  {
@@ -26,4 +26,19 @@
     padding-top: 20px;
     font-size: 25px;
     margin-left: 35%;
+}
+
+.bill-list {
+  font-size: 30px;
+  height:50%;
+  width: 100%;
+  overflow-y: scroll;
+}
+#top {
+  float: left;
+}
+
+#bottom {
+  float: left;
+  clear: left;
 }

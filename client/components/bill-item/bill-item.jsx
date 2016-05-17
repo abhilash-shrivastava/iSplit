@@ -3,13 +3,20 @@ import styles from "./bill-item.css";
 import {connect} from 'react-redux';
 import 'rc-collapse/assets/index.css';
 import Collapse, {Panel} from 'rc-collapse';
+import ReactDom from 'react-dom';
+
 export default class BillItem extends React.Component {
-  slideDown = () => {
+  slideDown = event => {
+    event.persist();
+    if (event.target.parentNode.className !== 'list-item') {
+      return;
+    }
     if (this.props.item.key !== this.props.expandedItemKey) {
       this.props.dispatch({
         'type': 'EXPAND_ITEM',
         'payLoad': this.props.item.key
       });
+      ReactDom.findDOMNode(this).scrollIntoView();
     } else {
       this.props.dispatch({
         'type': 'EXPAND_ITEM',
@@ -28,17 +35,6 @@ export default class BillItem extends React.Component {
         </Panel>
       </Collapse>
     </div>;
-    // return <Collapse defaultActiveKey="1">
-    //   <Panel  header={`This is panel nest panel`}>
-    //     HEY
-    //   </Panel>
-    //   // <div className="list-item" onClick={this.slideDown}>
-    //   //   <div className="list-item-quantity">{this.props.item.quantity}</div>
-    //   //   <div className="list-item-name">{this.props.item.description}</div>
-    //   //   <div className="list-item-price">${this.props.item.price}</div>
-    //   // </div>
-    //   // {this.props.item.key === this.props.expandedItemKey ? this.renderSlideDown() : null}
-    // </Collapse>;
   }
   isPersonAssignedToMe(person) {
     if (this.props.item.assignedPeople) {

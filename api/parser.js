@@ -80,6 +80,12 @@ module.exports = {
           }
           if (rows[i][2].match(/tax/i)) {
             billObj.tax = rows[i][0];
+            var tax = {};
+            tax.key = i;
+            tax.price = rows[i][0];
+            tax.quantity = "";
+            tax.description = rows[i][2];
+            items.push(tax);
             continue;
           }
           if (rows[i][2].match(/discount/i)) {

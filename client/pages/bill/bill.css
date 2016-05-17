@@ -7,6 +7,6 @@
 }
 .bill-list {
   font-size: 55px;
-  height:calc(100% - 320px);
+  height:calc(100% - 170px);
   overflow-y: scroll;
 }

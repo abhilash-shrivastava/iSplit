@@ -4,6 +4,7 @@ import FileInput from 'react-file-input';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import CogLoader from '../../components/cogloader/cogloader.jsx';
+import FacebookLogin from 'react-facebook-login';
 
 class HomePage extends React.Component {
   handleChange = event => {
@@ -42,21 +43,49 @@ class HomePage extends React.Component {
       isLoading: false
     });
   }
+  responseFacebook = response => {
+    let me = {
+      'key': 'me',
+      'colorCode': 'rgba(255, 180, 122, 0.61)',
+      'name': response.name.split(' ')[0],
+      'email': 'test@test'
+    };
+    FB.api(
+      "/" + response.id + "/picture",
+      response => {
+        if (response && !response.error) {
+          me.picture = response.data.url;
+          this.props.dispatch({
+            'type': 'ADD_ME',
+            'payLoad': me
+          });
+        }
+      }
+    );
+  }
   renderLoader() {
     return <CogLoader/>;
+  }
+  renderFacebookButton() {
+    return <FacebookLogin
+        appId="1704240733167659"
+        callback={this.responseFacebook} />;
+  }
+  renderCameraButton() {
+    return <form>
+      <p>UPLOAD BILL</p>
+     <FileInput name="image"
+                accept=".png,.gif,.jpg,.jpeg"
+                placeholder="Upload Bill"
+                className="btn-camera"
+                onChange={this.handleChange}/>
+            </form>;
   }
   renderPage() {
     return <div>
       <h1>iSplit</h1>
       <h2>Sharing is Caring</h2>
-        <form>
-          <p>UPLOAD IMAGE</p>
-         <FileInput name="image"
-                    accept=".png,.gif,.jpg,.jpeg"
-                    placeholder="Upload Image"
-                    className="btn-camera"
-                    onChange={this.handleChange}/>
-        </form>
+      {this.props.me ? this.renderCameraButton() : this.renderFacebookButton()}
     </div>;
   }
   render() {
@@ -65,5 +94,9 @@ class HomePage extends React.Component {
     </article>;
   }
 }
-const exports = connect()(HomePage);
+const exports = connect(
+  state => ({
+    me: state.root.people.me
+  })
+)(HomePage);
 export default exports;

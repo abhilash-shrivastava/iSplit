@@ -15,6 +15,7 @@
       }
     },
     "globals": {
+        "FB": true,
         "angular": true,
         "_": true,
         "PrettyJSON": true

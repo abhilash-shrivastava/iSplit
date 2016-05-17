@@ -5,6 +5,15 @@
   width:100vw;
   border-bottom:1px solid green;
 }
+.rc-collapse-header {
+  height:auto !important;
+  line-height: initial !important;
+  text-indent: initial !important;
+}
+.rc-collapse-content {
+  padding:0 !important;
+  margin:0 !important;
+}
 .add-person-icon {
   position: absolute;
   right:60px;
@@ -51,6 +60,16 @@
   height:105px;
   width:15%;
 }
+.arrow {
+  display: none !important;
+}
+
+[aria-expanded] .list-item {
+  transition: all 200ms ease-out;
+}
+[aria-expanded="true"] .list-item {
+  background-color: #ADD8E6;
+}
 .btn-plus {
   margin-left: 15%;
   cursor: pointer;
@@ -91,6 +110,9 @@
   width:calc(15% - 25px);
   padding-top:25px;
   border-right:1px solid green;
+}
+.rc-collapse-content-box {
+  margin:0 !important;
 }
 .active .checkbox {
   background-image:url(http://i.imgur.com/fdI0Kr5.png);

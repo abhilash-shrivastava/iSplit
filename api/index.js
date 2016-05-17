@@ -4,11 +4,11 @@ var vision = require('google-vision-api-client');
 var requtil = vision.requtil;
 var path = require('path');
 var jsonfile = path.join(__dirname, 'secret/apikey.json');
-var parser = require('./parser');
+var textbot = require(path.join(__dirname, 'text.js'));
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, './tmp/');
+    cb(null, '../tmp/');
   },
   filename: function(req, file, cb) {
     cb(null, file.fieldname + '-' + Date.now());
@@ -21,13 +21,6 @@ var upload = multer({storage: storage});
 vision.init(jsonfile);
 var app = express();
 
-app.use(function(req, res, next) {
-  res.setHeader('Content-Type', 'application/json');
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
 app.post('/', upload.single('image'), function(req, res) {
   // Build the request payloads
   var d = requtil.createRequests().addRequest(
@@ -38,11 +31,14 @@ app.post('/', upload.single('image'), function(req, res) {
     if (e) {
       res.sendStatus(500);
     } else {
-      var data = JSON.parse(JSON.stringify(d));
-      data = parser.parse(data);
-      res.send(JSON.stringify(data));
+      res.send(JSON.stringify(d));
     }
   });
+});
+
+app.post('/save', function(req, res) {
+  var response = textbot.sendText('2485679221');
+  res.send(response);
 });
 
 app.listen(3000);

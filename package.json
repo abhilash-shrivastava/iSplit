@@ -29,6 +29,7 @@
   "dependencies": {
     "express": "^4.13.4",
     "google-vision-api-client": "0.0.3",
+    "mailgun": "^0.5.0",
     "multer": "^1.1.0",
     "rc-collapse": "^1.6.3",
     "react": "^15.0.2",
@@ -41,7 +42,8 @@
     "react-router": "^2.4.0",
     "react-simple-pie-chart": "^0.3.1",
     "redux": "^3.5.2",
-    "reset-css": "^2.0.2011012603"
+    "reset-css": "^2.0.2011012603",
+    "textbelt": "github:minond/textbelt"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",

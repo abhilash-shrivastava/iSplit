@@ -1,22 +1,44 @@
 import React from "react";
 import styles from "./bill-item.css";
 import {connect} from 'react-redux';
+import 'rc-collapse/assets/index.css';
+import Collapse, {Panel} from 'rc-collapse';
 export default class BillItem extends React.Component {
   slideDown = () => {
-    this.props.dispatch({
-      'type': 'EXPAND_ITEM',
-      'payLoad': this.props.item.key
-    });
+    if (this.props.item.key !== this.props.expandedItemKey) {
+      this.props.dispatch({
+        'type': 'EXPAND_ITEM',
+        'payLoad': this.props.item.key
+      });
+    } else {
+      this.props.dispatch({
+        'type': 'EXPAND_ITEM',
+        'payLoad': null
+      });
+    }
   }
   render() {
-    return <div>
-      <div className="list-item" onClick={this.slideDown}>
-        <div className="list-item-quantity">{this.props.item.quantity}</div>
-        <div className="list-item-name">{this.props.item.description}</div>
-        <div className="list-item-price">${this.props.item.price}</div>
-      </div>
-      {this.props.item.key === this.props.expandedItemKey ? this.renderSlideDown() : null}
+    return <div onClick={this.slideDown}><Collapse activeKey={this.props.item.key === this.props.expandedItemKey ? '1' : null}>
+        <Panel header={<div className="list-item">
+              <div className="list-item-quantity">{this.props.item.quantity}</div>
+              <div className="list-item-name">{this.props.item.description}</div>
+              <div className="list-item-price">${this.props.item.price}</div>
+            </div>} key="1">
+          {this.renderSlideDown()}
+        </Panel>
+      </Collapse>
     </div>;
+    // return <Collapse defaultActiveKey="1">
+    //   <Panel  header={`This is panel nest panel`}>
+    //     HEY
+    //   </Panel>
+    //   // <div className="list-item" onClick={this.slideDown}>
+    //   //   <div className="list-item-quantity">{this.props.item.quantity}</div>
+    //   //   <div className="list-item-name">{this.props.item.description}</div>
+    //   //   <div className="list-item-price">${this.props.item.price}</div>
+    //   // </div>
+    //   // {this.props.item.key === this.props.expandedItemKey ? this.renderSlideDown() : null}
+    // </Collapse>;
   }
   isPersonAssignedToMe(person) {
     if (this.props.item.assignedPeople) {

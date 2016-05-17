@@ -6,7 +6,7 @@ import Header from './components/header/header.jsx';
 import OverviewPage from './pages/overview/overview-page.jsx';
 import TabPage from './pages/tab/tab-page.jsx';
 import BillPage  from './pages/bill/bill-page.jsx';
-import DetailsPage  from './pages/details/details-page.jsx';
+import PayPage  from './pages/pay/pay-page.jsx';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import './root.css';
@@ -33,7 +33,7 @@ class Root extends React.Component {
           <Route path="/bill" component={BillPage} />
           <Route path="/overview" component={OverviewPage} />
           <Route path="/tab" component={TabPage} />
-          <Route path="/details" component={DetailsPage} />
+          <Route path="/pay" component={PayPage} />
         </Router>
       </div>
   </Provider>;

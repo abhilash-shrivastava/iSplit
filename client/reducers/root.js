@@ -72,7 +72,6 @@ function root(state = defaultState, action) {
           newState.people[aKey].amountDue += parseFloat(item2.price / aKeys.length);
         }
       }
-      console.log(JSON.stringify(newState));
       break;
     }
     case 'ADD_PERSON': {

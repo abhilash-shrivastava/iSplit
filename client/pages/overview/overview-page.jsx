@@ -31,18 +31,29 @@ export default class OverviewPage extends React.Component {
     this.setState({
       'isLoading': true
     });
-    setTimeout(() => {
-      this.props.dispatch({
-        'type': 'UPDATE_ROUTE',
-        'payLoad': '/'
-      });
-      this.props.dispatch({
-        'type': 'RESET_STATE',
-        'payLoad': ''
-      });
-      browserHistory.push('/');
-    }, 5000);
+    fetch('http://localhost:3000/save', {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify(this.props.root)
+    }).then(response => {
+      setTimeout(() => {
+        this.returnHome();
+      }, 5000);
+    });
   };
+  returnHome() {
+    this.props.dispatch({
+      'type': 'UPDATE_ROUTE',
+      'payLoad': '/'
+    });
+    this.props.dispatch({
+      'type': 'RESET_STATE',
+      'payLoad': ''
+    });
+    browserHistory.push('/');
+  }
   renderOverview() {
     return <article className="overview">
       <h1>Group Overview</h1>
@@ -77,6 +88,7 @@ export default class OverviewPage extends React.Component {
   }
 }
 const exports = connect(state => ({
+  root: state.root,
   people: state.root.people
 })
 )(OverviewPage);

@@ -17,7 +17,9 @@ var config = {
   },
   devServer: {
     port: 9000,
-    historyApiFallback: true
+    historyApiFallback: {
+      index: '/'
+    }
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -57,10 +57,12 @@ function makeid() {
 
 app.use(bodyParser.json({type: 'application/*+json'}));
 app.get('/:id', function(req, res) {
+  res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(cache.get(req.param('id'))));
 });
 app.post('/save', jsonParser, function(req, res) {
   var state = req.body;
+  console.log(state);
   var id = makeid();
   cache.put(id, state);
   var response = textbot.sendText('2485679221', id, state.people.me.name, function() {
